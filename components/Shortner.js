@@ -1,5 +1,6 @@
 "use client"
 
+import Link from 'next/link';
 import React, { useState } from 'react'
 
 const Shortner = () => {
@@ -8,6 +9,8 @@ const Shortner = () => {
     const [generated, setGenerated] = useState("")
 
     const generate = async (e) => {
+        e.preventDefault();
+        
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -26,9 +29,9 @@ const Shortner = () => {
         fetch("/api/generate", requestOptions)
             .then((response) => response.json())
             .then((result) => {
-                seturl("")
-                setshorturl("")
-                console.log(result)
+                if (result.success) {
+                    setGenerated(`http://localhost:3000/${shorturl}`)
+                }
                 alert(result.message)
             })
             .catch((error) => console.error(error));
@@ -46,7 +49,7 @@ const Shortner = () => {
                     </p>
 
                     <form className="mb-8">
-                        <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-4 m-19">
                             <input
                                 value={url}
                                 type="url"
@@ -70,6 +73,27 @@ const Shortner = () => {
                             </button>
                         </div>
                     </form>
+
+                    {generated && (
+                        <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
+                            <h3 className="text-lg font-semibold text-green-800 mb-2">
+                                Your Shortened URL:
+                            </h3>
+                            <div className="flex items-center gap-4">
+                                <code className="bg-white px-4 py-2 rounded border flex-1 text-blue-600 font-mono">
+                                    <Link href={generated} className="text-blue-600 hover:underline font-bold">
+                                        {generated}
+                                    </Link>
+                                </code>
+                                <button 
+                                    onClick={() => navigator.clipboard.writeText(generated)}
+                                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded font-semibold"
+                                >
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+                    )}
 
                     <div className="grid md:grid-cols-3 gap-6 mt-12">
                         <div className="text-center">
