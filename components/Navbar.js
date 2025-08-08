@@ -25,15 +25,15 @@ const Navbar = () => {
             <Link href="/" className="text-gray-600 hover:text-blue-600">
               Home
             </Link>
-            <Link href="/about" className="text-gray-600 hover:text-blue-600">
+            {/* <Link href="/about" className="text-gray-600 hover:text-blue-600">
               About
+            </Link> */}
+            <Link href="#shorten" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+              <button>TrimURL</button>
             </Link>
-            <Link href="/login" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-              <button>Login</button>
-            </Link>
-            <Link href="/register" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+            {/* <Link href="/register" className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
               <button>Register</button>
-            </Link>
+            </Link> */}
           </div>
 
           {/* Mobile Menu Button */}
