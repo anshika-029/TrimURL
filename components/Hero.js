@@ -16,7 +16,7 @@ const Hero = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-4xl">
-        <div className="animate-fade-in">
+        <div>
           <h1 className="text-6xl md:text-7xl font-extrabold mb-6 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow-2xl">
             TrimURL
           </h1>
@@ -43,12 +43,6 @@ const Hero = () => {
           </Link>
         </div>
       </div>
-
-      {/* Floating Elements */}
-      <div className="absolute top-20 left-10 w-4 h-4 bg-cyan-400/40 rounded-full animate-pulse"></div>
-      <div className="absolute top-40 right-20 w-6 h-6 bg-purple-400/40 rounded-full animate-bounce"></div>
-      <div className="absolute bottom-32 left-20 w-3 h-3 bg-cyan-300/30 rounded-full animate-ping"></div>
-      <div className="absolute bottom-20 right-10 w-5 h-5 bg-blue-300/30 rounded-full animate-pulse"></div>
     </div>
   )
 }
