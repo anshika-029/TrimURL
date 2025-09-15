@@ -1,67 +1,75 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import axios from 'axios';
-import './App.css'
+import './App.css';
 
 function App() {
-
   const [longUrl, setLongUrl] = useState("");
   const [shortUrl, setShortUrl] = useState("");
   const [shortUrlResult, setShortUrlResult] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // stop page reload
-
-    if (!longUrl || !shortUrl) return; // validation already done
+    e.preventDefault();
+    if (!longUrl || !shortUrl) return;
 
     try {
       const res = await axios.post("https://trimurl-geiz.onrender.com/api/shorten", {
         longUrl,
         shortUrl
       });
-      console.log(res.data); // you'll see message + urls
-      setShortUrlResult(res.data.shortUrl); // store to display
+      setShortUrlResult(res.data.shortUrl);
     } catch (err) {
-      console.error(err);
       alert(err.response?.data?.message || "Failed to save URL");
     }
   };
 
-
   return (
-    <>
-      <h1>Form + URL Shortner</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          required
-          type='text'
-          placeholder='Enter long URL'
-          value={longUrl}
-          onChange={(e) => setLongUrl(e.target.value)}
-        />
-        <p>Long URL: {longUrl}</p>
+    <div className="app-container">
+      <div className="form-card">
+        <h1 className="title">URL Shortener</h1>
+        <p className="subtitle">Convert long URLs into short, memorable links</p>
 
-        <input
-          required
-          type='text'
-          value={shortUrl}
-          onChange={(e) => setShortUrl(e.target.value)}
-          placeholder='Enter preferred short url'
-        />
-        <p>Your short URL: {shortUrl}</p>
-        <button type='submit'>Convert</button>
-      </form>
-      {shortUrlResult && (
-        <div>
-          Short URL:
-          <a
-            href={`https://trimurl-geiz.onrender.com/${shortUrlResult}`}
-            target='_blank'
-          >
-            {shortUrlResult}</a>
-        </div>
-      )}
-    </>
-  )
+        <form onSubmit={handleSubmit} className="url-form">
+          <label>
+            Long URL
+            <input
+              required
+              type="text"
+              placeholder="Enter long URL"
+              value={longUrl}
+              onChange={(e) => setLongUrl(e.target.value)}
+            />
+          </label>
+
+          <label>
+            Preferred Short URL
+            <input
+              required
+              type="text"
+              placeholder="Enter preferred short URL"
+              value={shortUrl}
+              onChange={(e) => setShortUrl(e.target.value)}
+            />
+          </label>
+
+          <button type="submit" className="convert-btn">Convert</button>
+        </form>
+
+        {shortUrlResult && (
+          <div className="result-container">
+            <p>Your Short URL:</p>
+            <a
+              href={`https://trimurl-geiz.onrender.com/${shortUrlResult}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="short-url"
+            >
+              {shortUrlResult}
+            </a>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
