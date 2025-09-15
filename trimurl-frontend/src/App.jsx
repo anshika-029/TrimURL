@@ -14,7 +14,7 @@ function App() {
     if (!longUrl || !shortUrl) return; // validation already done
 
     try {
-      const res = await axios.post("http://localhost:5000/api/shorten", {
+      const res = await axios.post("https://trimurl-geiz.onrender.com/api/shorten", {
         longUrl,
         shortUrl
       });
@@ -54,7 +54,7 @@ function App() {
         <div>
           Short URL:
           <a
-            href={`http://localhost:5000/${shortUrlResult}`}
+            href={`https://trimurl-geiz.onrender.com/${shortUrlResult}`}
             target='_blank'
           >
             {shortUrlResult}</a>
