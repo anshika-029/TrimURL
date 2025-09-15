@@ -12,7 +12,7 @@ function App() {
     if (!longUrl || !shortUrl) return;
 
     try {
-      const res = await axios.post("https://trimurl-geiz.onrender.com/api/shorten", {
+      const res = await axios.post("https://trim-url-xsi8.vercel.app/api/shorten", {
         longUrl,
         shortUrl
       });
@@ -58,12 +58,12 @@ function App() {
           <div className="result-container">
             <p>Your Short URL:</p>
             <a
-              href={`https://trimurl-geiz.onrender.com/${shortUrlResult}`}
+              href={`https://trim-url-xsi8.vercel.app/${shortUrlResult}`}
               target="_blank"
               rel="noopener noreferrer"
               className="short-url"
             >
-              {shortUrlResult}
+              https://trim-url-xsi8.vercel.app/{shortUrlResult}
             </a>
           </div>
         )}
