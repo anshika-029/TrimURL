@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Routes
 app.get("/", (req, res) => {
-    res.send("Hey bro! Server is running successfully... Yippy!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    res.send("Server is running successfully...");
 });
 
 app.post("/api/shorten", async (req, res) => {
